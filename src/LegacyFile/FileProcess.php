@@ -109,7 +109,7 @@ class FileProcess
     protected $_checkFields = true;
 
     /**
-     * @var bool Sets if importation it's in non-standard PSA CSV
+     * @var bool Sets if importation it's in non-standard CSV
      */
     protected $_isPseudoCSV = false;
 
@@ -334,7 +334,7 @@ class FileProcess
 
     /**
      * Sets _isPseudoCSV flag
-     * True if importation file is on PSA non-standard CSV format
+     * True if importation file is on non-standard CSV format
      *
      * @return bool
      */
@@ -347,7 +347,7 @@ class FileProcess
 
     /**
      * Returns _isPseudoCSV flag value
-     * True if importation file is on PSA non-standard CSV format
+     * True if importation file is on non-standard CSV format
      *
      * @param bool $pseudoCSV
      */

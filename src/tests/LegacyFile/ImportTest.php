@@ -12,7 +12,7 @@ class ImportTest extends PHPUnit_Framework_TestCase
             'phone'   => 10
         );
         $oImport = new Import('./files/contacts.csv', $defArray);
-        $this->assertEquals( "1" , "1");
+        $this->assertInstanceOf('mbarquin\LegacyFile\Import', $oImport);
     }
 
 }
