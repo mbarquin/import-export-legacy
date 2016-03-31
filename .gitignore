@@ -1,5 +1,5 @@
 /nbproject/
 **/nbproject/**
 /composer.lock
-/www/vendor/
-/src/vendor/
+/src/vendor/*
+!.gitignore
