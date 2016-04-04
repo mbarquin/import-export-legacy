@@ -70,14 +70,14 @@ class Export extends FileProcess
     public function writeRow($regArray)
     {
         if($this->_isPseudoCSV === true) {
-            if(fputcsv($this->_filePtr, $regArray, ';') !== false) {
+            if(fputcsv($this->_filePtr, $regArray, $this->_csvSeparator) !== false) {
                 return true;
             }
         } else {
             $strToWrite = $this->regToFixedString($regArray);
             if($strToWrite !== false) {
-                $strToWrite .= "\r\n";
-                if(fwrite($this->_filePtr, $strToWrite)) {
+                $strToWrite .= $this->_eolInUse;
+                if(fwrite($this->_filePtr, $strToWrite) !== false) {
                     return true;
                 }
             }

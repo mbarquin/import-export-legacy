@@ -32,7 +32,7 @@ Usage
             // This is also a valid check.
             // if(is_a($data, 'Exception') === true)
 
-            if(is_a($data, 'mbarquin\LegacyFile\ImportException') === true) {
+            if (is_a($data, 'mbarquin\LegacyFile\ImportException') === true) {
                 // Error handling
             }
 
@@ -43,14 +43,14 @@ as index, and in CSV case value is an integer which represents max data length,
 and in fixed-line cases it's the field length to be read. In this example is called defArray.
 
 FileImport class is configured by default to read fixed-line importation files, 
-if we want change this behaviour we must use this method setIsPseudoCSV(TRUE|FALSE) 
+if we want to change this behaviour we must use this method setIsPseudoCSV(TRUE|FALSE) 
 to set CSV import file to true.
 
 We also need a file to read, we can use an absolute or relative path, if the file 
 not exists or something goes wrong an exception will be raised.
 
-The object throws errors on many cases but data size validations or fixed line errors
-will not be thrown, they are returned as ImportException object, it's in your hand
+The object throws errors on many cases, but data size validations or fixed-line errors
+will not be thrown, they are returned as ImportException object, it's on your hand
 process error handling, and continue or not the rest of the file import, This can 
 be configured via setReturnValidationExceptions(TRUE|FALSE) method.
 
@@ -63,10 +63,11 @@ be configured via setReturnValidationExceptions(TRUE|FALSE) method.
         } catch(\Exception $e) {
             // Error handling.
         }
-If imported file is in another encoding, the class can convert it via iconv to another
+
+If imported file is in another encoding, the class can encode it via iconv to another
 encoding. Class has three encoding literals as constants, Import::UTF8
 Import::LATIN1 and Import::WINDOWS_OCCI, any encoding iconv literal will be accepted as 
-the iconv command will be encoding the text.
+the iconv command will be encoding the text. setTranscodification($from, $to)
 
         $oImport = new mbarquin\LegacyFile\Import('./files/contacts.csv', $defArray);
         $oImport->setTranscodification(

@@ -20,11 +20,11 @@ namespace mbarquin\LegacyFile;
  class DebugProcess {
      
     /**
-     * When check memory consumption
+     * Memory consumption check switch
      *
      * @var bool
      */
-    protected $_memDebug;
+    protected $_memDebug = false;
 
     /**
      * Sets if validation ImportExceptions are returned or thrown
@@ -46,6 +46,37 @@ namespace mbarquin\LegacyFile;
      * @var int
      */
     protected $_maxInternalMemoryUsage;
+    
+    /**
+     * Main constructor funtion sets debug mode on.
+     */
+    public function __construct() 
+    {
+        if (getenv('ENV') === 'development' || getenv('ENV') === 'local') {
+            $this->_memDebug = true;
+        }
+        
+    }// End __construct()
+    
+    /**
+     * Sets memory consuption debug on or off
+     * 
+     * @param boolean $on Sets if memory max and mins peaks are keeped
+     */
+    public function setDebugOn($on = true) 
+    {
+        $this->_memDebug = $on;
+    }// End setDebugOn()
+
+    /**
+     * Gets if memory consumption debug is on or off
+     * 
+     * @param boolean $on Sets if memory max and mins peaks are keeped
+     */
+    public function getDebugOn() 
+    {
+        return $this->_memDebug;
+    }// End getDebugOn()
     
     /**
      * Sets when perform memory usage statistics

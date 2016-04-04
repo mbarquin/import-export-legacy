@@ -129,7 +129,17 @@ class FileProcess extends DebugProcess
         return $this->_eolInUse;
     }// End getEndOfLine()
 
-
+    
+    /**
+     * Ends write file process closing file pointer.
+     * 
+     * @return void
+     */
+    public function end() {
+        fclose($this->_filePtr);
+    }// End end()
+    
+    
     /**
      * Main class constructor, sets file path
      *
@@ -139,10 +149,8 @@ class FileProcess extends DebugProcess
      */
     public function __construct($filePath, $fieldsArray, $mode='r')
     {
-        if (getenv('ENV') === 'development' || getenv('ENV') === 'local') {
-            $this->_memDebug = true;
-        }
-
+        parent::__construct();
+        
         $this->setFilePath($filePath);
 
         if (is_array($fieldsArray) === true && empty($fieldsArray) === false) {
@@ -162,7 +170,7 @@ class FileProcess extends DebugProcess
      *
      * @return bool
      */
-    function getRemoveReturns()
+    public function getRemoveReturns()
     {
         return $this->_removeReturns;
 
@@ -174,7 +182,7 @@ class FileProcess extends DebugProcess
      *
      * @param bool $removeReturns
      */
-    function setRemoveReturns($removeReturns)
+    public function setRemoveReturns($removeReturns)
     {
         $this->_removeReturns = $removeReturns;
 
@@ -185,7 +193,8 @@ class FileProcess extends DebugProcess
      * 
      * @return string
      */
-    public function getCsvSeparator() {
+    public function getCsvSeparator() 
+    {
         return $this->_csvSeparator;
     }
 
@@ -194,7 +203,8 @@ class FileProcess extends DebugProcess
      * 
      * @param string $csvSeparator New CSV field separator
      */
-    public function setCsvSeparator($csvSeparator) {
+    public function setCsvSeparator($csvSeparator) 
+    {
         $this->_csvSeparator = $csvSeparator;
     }
 
