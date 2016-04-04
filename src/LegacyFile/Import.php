@@ -48,7 +48,9 @@ class Import extends FileProcess implements \Iterator
     {
         if(feof($this->_filePtr) === false) {
             if($this->getIsPseudoCSV() === true) {
-                $this->_readReg = fgetcsv($this->_filePtr, 0, ';');
+                $this->_readReg = fgetcsv(
+                    $this->_filePtr, 0, $this->getCsvSeparator()
+                );
             } else {
                 $this->_readReg = fgets($this->_filePtr);
                 // remove carriage returns
