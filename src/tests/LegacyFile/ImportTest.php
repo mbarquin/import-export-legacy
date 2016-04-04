@@ -30,12 +30,20 @@ class ImportTest extends PHPUnit_Framework_TestCase
     
     public function testBadDefinitionConstruct()
     {
+        $oImport = new Import('./files/contacts.csv', 'Test');
+    }
+    
+    public function testReadOkReturnAnArrayConstruct()
+    {
         $defArray = array (
             'name'    => 20,
             'surname' => 20,
             'phone'   => 10
         );
-        $oImport = new Import('./files/contacts.csv', 'Test');
+        $oImport = new Import('./files/contacts.csv', $defArray);
+        $oImport->setIsPseudoCSV(TRUE);
+        foreach ($oImport as $line => $data) {
+            $this->assertTrue(is_array($data));
+        }
     }
-    
 }
