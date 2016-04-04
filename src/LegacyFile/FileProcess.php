@@ -230,8 +230,7 @@ class FileProcess extends DebugProcess
     {
         if(empty($from) === true || empty($to) === true) {
             // Transcodification Source and Target must exist.
-            $mess = _('Source and target codification '
-                .'must be defined.');
+            $mess = _('Source and target codification must be defined.');
 
             throw new \Exception($mess, '00002');
 
