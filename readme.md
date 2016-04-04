@@ -3,9 +3,9 @@ import-export-legacy
 
 Introduction
 ------------
-This is a library for importing large csv or fixed-line files, it just needs an 
+This is a library for importing large csv or fixed-line files, it just needs an
 index array and a file path, the object itself is iterable, in each loop it returns
-an index corresponding to the read line number and an array with data in the 
+an index corresponding to the read line number and an array with data in the
 form of the index array, if something goes wrong it returns an exception.
 
 Installation
@@ -29,5 +29,11 @@ Usage
         $oImport->setIsPseudoCSV(TRUE);
 
         foreach ($oImport as $line => $data) {
+            // This is also a valid check.
+            // if(is_a($data, 'Exception') === true)
+
+            if(is_a($data, 'mbarquin\LegacyFile\ImportException') === true) {
+                // Error handling
+            }
 
         }

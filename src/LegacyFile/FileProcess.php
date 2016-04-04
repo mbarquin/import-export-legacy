@@ -60,6 +60,13 @@ class FileProcess
     protected $_memDebug;
 
     /**
+     * Sets if validation ImportExceptions are returned or thrown
+     *
+     * @var boolean
+     */
+    protected $_returnValidationExceptions = true;
+
+    /**
      * Used to store max system memory usage in each iteration
      *
      * @var int
@@ -357,6 +364,25 @@ class FileProcess
 
     }//end setIsPseudoCSV()
 
+    /**
+     * Gets if validation ImportExceptions are returned or thrown
+     *
+     * @return boolean
+     */
+    public function getReturnValidationExceptions()
+    {
+        return $this->_returnValidationExceptions;
+    }
+
+    /**
+     * Sets if validation ImportExceptions are returned or thrown
+     *
+     * @param boolean $returnValidationExceptions
+     */
+    public function setReturnValidationExceptions($returnValidationExceptions)
+    {
+        $this->_returnValidationExceptions = $returnValidationExceptions;
+    }
 
     /**
      * Gets the flag to order fields checks

@@ -184,11 +184,28 @@ class Import extends FileProcess implements \Iterator
         try {
             return $this->regToArray($this->_readReg);
         } catch(ImportException $excpt) {
-            return $excpt;
+            return $this->returnThrowException($excpt);
         }
 
     }//end current()
 
+    /**
+     * Checks if validation ImportExceptions must be returned or thrown.
+     *
+     * @param mbarquin\LegacyFile\ImportException $excpt Validation exception
+     *
+     * @return mbarquin\LegacyFile\ImportException|void
+     * @throws mbarquin\LegacyFile\ImportException
+     */
+    public function returnThrowException($excpt)
+    {
+        if($this->_returnValidationExceptions === true) {
+            return $excpt;
+        } else {
+            throw $excpt;
+        }
+
+    }// End returnThrowException()
 
     /**
      * Gets actual pointer position

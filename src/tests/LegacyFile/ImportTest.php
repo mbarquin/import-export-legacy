@@ -27,12 +27,12 @@ class ImportTest extends PHPUnit_Framework_TestCase
         );
         $oImport = new Import('./files/contactsFileNotExists.csv', $defArray);
     }
-    
+
     public function testBadDefinitionConstruct()
     {
         $oImport = new Import('./files/contacts.csv', 'Test');
     }
-    
+
     public function testReadOkReturnAnArrayConstruct()
     {
         $defArray = array (
@@ -44,6 +44,38 @@ class ImportTest extends PHPUnit_Framework_TestCase
         $oImport->setIsPseudoCSV(TRUE);
         foreach ($oImport as $line => $data) {
             $this->assertTrue(is_array($data));
+        }
+    }
+
+    public function testBadSizeExceptionReturned()
+    {
+        $defArray = array (
+            'name'    => 3,
+            'surname' => 20,
+            'phone'   => 10
+        );
+        $oImport = new Import('./files/contacts.csv', $defArray);
+        $oImport->setIsPseudoCSV(TRUE);
+        foreach ($oImport as $line => $data) {
+            $this->assertInstanceOf('mbarquin\LegacyFile\ImportException', $data);
+        }
+    }
+
+    /**
+     * @expectedException mbarquin\LegacyFile\ImportException
+     */
+    public function testBadSizeExceptionThrown()
+    {
+        $defArray = array (
+            'name'    => 3,
+            'surname' => 20,
+            'phone'   => 10
+        );
+        $oImport = new Import('./files/contacts.csv', $defArray);
+        $oImport->setIsPseudoCSV(TRUE);
+        $oImport->setReturnValidationExceptions(false);
+        foreach ($oImport as $line => $data) {
+
         }
     }
 }
