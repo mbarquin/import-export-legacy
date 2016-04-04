@@ -15,13 +15,6 @@
 
 namespace mbarquin\LegacyFile;
 
-const UTF8         = 'UTF-8';
-const LATIN1       = 'ISO-8859-1';
-const WINDOWS_OCCI = 'CP1252';
-
-const EOL_WINDOWS  = "\r\n";
-const EOL_LINUX    = "\n";
-
 /**
  * Generic file processing class
  */
