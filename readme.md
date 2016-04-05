@@ -50,8 +50,8 @@ We also need a file to read, we can use an absolute or relative path, if the fil
 not exists or something goes wrong an exception will be raised.
 
 The object throws errors on many cases, but data size validations or fixed-line errors
-will not be thrown, they are returned as ImportException object, it's on your hand
-process error handling, and continue or not the rest of the file import, This can 
+will not be thrown, they are returned as ImportException objects, error handling is up to you, 
+and interrupt or not the rest of the file import, This can 
 be configured via setReturnValidationExceptions(TRUE|FALSE) method.
 
         $oImport = new mbarquin\LegacyFile\Import('./files/contacts.csv', $defArray);
@@ -64,8 +64,8 @@ be configured via setReturnValidationExceptions(TRUE|FALSE) method.
             // Error handling.
         }
 
-If imported file is in another encoding, the class can encode it via iconv to another
-encoding. Class has three encoding literals as constants, Import::UTF8
+If imported file is in another encoding, the class can transcode it via iconv. 
+Class has three encoding literals as constants, Import::UTF8
 Import::LATIN1 and Import::WINDOWS_OCCI, any encoding iconv literal will be accepted as 
 the iconv command will be encoding the text. setTranscodification($from, $to)
 
