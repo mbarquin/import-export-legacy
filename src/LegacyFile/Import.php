@@ -48,8 +48,10 @@ class Import extends FileProcess implements \Iterator
     {
         if(feof($this->_filePtr) === false) {
             if($this->getIsPseudoCSV() === true) {
+                $csvConf = $this->getCsvDefaults();
                 $this->_readReg = fgetcsv(
-                    $this->_filePtr, 0, $this->getCsvSeparator()
+                    $this->_filePtr, 0, $csvConf['separator'], 
+                        $csvConf['enclosure'], $csvConf['escape']
                 );
             } else {
                 $this->_readReg = fgets($this->_filePtr);

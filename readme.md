@@ -74,3 +74,19 @@ the iconv command will be encoding the text. setTranscodification($from, $to)
             mbarquin\LegacyFile\Import::WINDOWS_OCCI, mbarquin\LegacyFile\Import::UTF8
         );
 
+If debug mode is on, setDebug(TRUE|FALSE), Import object will track MAX memory consuption in each iteration.
+This library only use the memory necessary to keep the last read line from processed file. 
+When a new line is read, the old one is deleted from memory.
+
+This info is stored in private properties that can be accessed with:
+
+    getMaxRealMemoryUsage()
+    getMaxInternalMemoryUsage()
+
+Max memory check, which writes these properties, also can be invoked with setMaxMemoryUsage() method.
+
+If there is an environment variable called "ENV" with value "development" or "local" 
+mode debug will be raised on construct.
+
+Default CSV separator is ; the enclosure " and scape \ , these are the defaults on fgetcsv function.
+Nowadays only separator can be changed

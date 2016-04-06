@@ -18,7 +18,7 @@ namespace mbarquin\LegacyFile;
 /**
  * Generic file processing class
  */
-class FileProcess extends DebugProcess
+abstract class FileProcess extends DebugProcess
 {
     /**
      * Sets utf-8 encoding literal for ICONV
@@ -107,6 +107,16 @@ class FileProcess extends DebugProcess
      * @var string Csv fields separator
      */
     protected $_csvSeparator = ';';
+
+    /**
+     * @var string Csv fields separator
+     */
+    protected $_csvEnclosure = '"';
+    
+    /**
+     * @var string Csv fields separator
+     */
+    protected $_csvEscape = '\\';
     
     /**
      * Sets which characters will be used on file line endings
@@ -189,26 +199,36 @@ class FileProcess extends DebugProcess
     }//end setRemoveReturns()
 
     /**
-     * Get CSV field separator
+     * Sets fgetCSV defaults
      * 
-     * @return string
+     * @param string $csvSeparator CSV field separator
+     * @param string $enclosure    Fields with special chars are encapsulated in.
+     * @param string $escape       Sets the escape character (one character only)
      */
-    public function getCsvSeparator() 
+    public function setCsvDefaults($csvSeparator = ";",  $enclosure = '"', $escape = '\\') 
     {
-        return $this->_csvSeparator;
+        $this->_csvSeparator = $csvSeparator;
+        $this->_csvEnclosure = $enclosure;
+        $this->_csvEscape    = $escape;
     }
 
     /**
-     * Sets CSV field separator
+     * Sets fgetCSV defaults
      * 
-     * @param string $csvSeparator New CSV field separator
+     * @param string $csvSeparator CSV field separator
+     * @param string $enclosure    Fields with special chars are encapsulated in.
+     * @param string $escape       Sets the escape character (one character only)
      */
-    public function setCsvSeparator($csvSeparator) 
+    public function getCsvDefaults($csvSeparator = ";",  $enclosure = '"', $escape = '\\') 
     {
-        $this->_csvSeparator = $csvSeparator;
+        return array ( 
+            "separator" => $this->_csvSeparator,
+            "enclosure" => $this->_csvEnclosure,
+            "escape"    => $this->_csvEscape
+        );
     }
-
-        /**
+    
+    /**
      * Sets absolute file path
      *
      * @param string $filePath

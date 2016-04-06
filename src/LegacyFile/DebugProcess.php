@@ -17,7 +17,7 @@ namespace mbarquin\LegacyFile;
 /**
  * Debug process memory usage class
  */
- class DebugProcess {
+ abstract class DebugProcess {
      
     /**
      * Memory consumption check switch
@@ -63,7 +63,7 @@ namespace mbarquin\LegacyFile;
      * 
      * @param boolean $on Sets if memory max and mins peaks are keeped
      */
-    public function setDebugOn($on = true) 
+    public function setDebug($on = true) 
     {
         $this->_memDebug = $on;
     }// End setDebugOn()
@@ -73,7 +73,7 @@ namespace mbarquin\LegacyFile;
      * 
      * @param boolean $on Sets if memory max and mins peaks are keeped
      */
-    public function getDebugOn() 
+    public function getDebug() 
     {
         return $this->_memDebug;
     }// End getDebugOn()
