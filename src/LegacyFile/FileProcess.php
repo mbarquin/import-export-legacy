@@ -213,13 +213,11 @@ abstract class FileProcess extends DebugProcess
     }
 
     /**
-     * Sets fgetCSV defaults
+     * Returns fgetCSV defaults as array
      * 
-     * @param string $csvSeparator CSV field separator
-     * @param string $enclosure    Fields with special chars are encapsulated in.
-     * @param string $escape       Sets the escape character (one character only)
+     * @return array
      */
-    public function getCsvDefaults($csvSeparator = ";",  $enclosure = '"', $escape = '\\') 
+    public function getCsvDefaults() 
     {
         return array ( 
             "separator" => $this->_csvSeparator,

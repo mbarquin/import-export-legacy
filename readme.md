@@ -88,5 +88,6 @@ Max memory check, which writes these properties, also can be invoked with setMax
 If there is an environment variable called "ENV" with value "development" or "local" 
 mode debug will be raised on construct.
 
-Default CSV separator is ; the enclosure " and scape \ , these are the defaults on fgetcsv function.
-Nowadays only separator can be changed
+Default fgetCSV separator is ; the enclosure " and scape \ , these are the defaults, they can be changed
+using setCsvDefaults($csvSeparator = ";",  $enclosure = '"', $escape = '\\'), and verified with 
+getCsvDefaults(), which returns an array with these indexes, separator, enclosure and escape.
